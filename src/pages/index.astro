@@ -1,59 +1,642 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const featuredPost = posts.find((post) => post.id === 'first-post') ?? posts[0];
+const latestPosts = posts.filter((post) => post.id !== featuredPost?.id).slice(0, 3);
+
+const categories = [
+	{
+		label: 'Hair & protective styles',
+		description: 'Texture-led braids, twists, and natural looks.',
+		href: '/blog/first-post/',
+		number: '01',
+	},
+	{
+		label: 'Men’s grooming',
+		description: 'Considered cuts, silver styles, and barber notes.',
+		href: '/blog/second-post/',
+		number: '02',
+	},
+	{
+		label: 'Nail art',
+		description: 'Polished sets, expressive finishes, and details.',
+		href: '/blog/third-post/',
+		number: '03',
+	},
+	{
+		label: 'Wigs & extensions',
+		description: 'Find the right unit for your style and routine.',
+		href: '/blog/using-mdx/',
+		number: '04',
+	},
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+			image={featuredPost?.data.heroImage}
+			imageAlt={featuredPost?.data.heroImageAlt}
+		/>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to
-				build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your{' '}
-				<code>astro.config.mjs</code> file. You can customize your setup with{' '}
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>
-					Edit this page in <code>src/pages/index.astro</code>
-				</li>
-				<li>
-					Edit the site header items in <code>src/components/Header.astro</code>
-				</li>
-				<li>
-					Add your name to the footer in <code>src/components/Footer.astro</code>
-				</li>
-				<li>
-					Check out the included blog posts in <code>src/content/blog/</code>
-				</li>
-				<li>
-					Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code>
-				</li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to{' '}
-				<a href="https://docs.astro.build/">read the docs</a> or{' '}
-				<a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out{' '}
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a> by{' '}
-				<a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="home">
+			<section class="hero">
+				<div class="hero-copy">
+					<p class="eyebrow"><span></span> The beauty & style journal</p>
+					<h1>Good style.<br /><em>Your own way.</em></h1>
+					<p class="hero-intro">
+						A considered lookbook for expressive hair, confident grooming, and beauty artistry
+						that feels like you.
+					</p>
+					<div class="hero-actions">
+						<a class="button button-dark" href="#lookbook">Explore the lookbook <span>↗</span></a>
+						<a class="text-link" href="/about/">Meet the showcase <span>→</span></a>
+					</div>
+					<div class="hero-note">
+						<span class="note-rule"></span>
+						<p>Inspiration for the chair, the mirror, and everything in between.</p>
+					</div>
+				</div>
+				{featuredPost?.data.heroImage && (
+					<a class="hero-image" href={`/blog/${featuredPost.id}/`} aria-label={`Read: ${featuredPost.data.title}`}>
+						<Image
+							src={featuredPost.data.heroImage}
+							width={960}
+							height={960}
+							alt={featuredPost.data.heroImageAlt ?? featuredPost.data.title}
+							loading="eager"
+						/>
+						<span class="image-caption">
+							<span>On the moodboard</span>
+							<strong>{featuredPost.data.title}</strong>
+						</span>
+					</a>
+				)}
+				<div class="hero-index" aria-hidden="true">C&amp;C <span>—</span> 01 / 04</div>
+			</section>
+
+			<section class="lookbook" id="lookbook">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Find your next look</p>
+						<h2>A little inspiration, <em>a lot of you.</em></h2>
+					</div>
+					<p class="section-aside">
+						Ideas and practical notes for the people who create the look—and the people who wear it.
+					</p>
+				</div>
+				<div class="category-grid">
+					{categories.map((category) => (
+						<a class="category-card" href={category.href}>
+							<span class="category-number">{category.number}</span>
+							<span class="category-arrow" aria-hidden="true">↗</span>
+							<h3>{category.label}</h3>
+							<p>{category.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			{latestPosts.length > 0 && (
+				<section class="latest">
+					<div class="section-heading latest-heading">
+						<div>
+							<p class="eyebrow">From the journal</p>
+							<h2>Fresh from the <em>studio.</em></h2>
+						</div>
+						<a class="text-link" href="/blog/">View all stories <span>→</span></a>
+					</div>
+					<div class="post-grid">
+						{latestPosts.map((post) => (
+							<article class="post-card">
+								<a class="post-image" href={`/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image
+											src={post.data.heroImage}
+											width={720}
+											height={540}
+											alt={post.data.heroImageAlt ?? post.data.title}
+										/>
+									)}
+								</a>
+								<div class="post-meta">
+									<span>{post.data.category}</span>
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+								<p>{post.data.description}</p>
+							</article>
+						))}
+					</div>
+				</section>
+			)}
+
+			<section class="artist-note">
+				<p class="eyebrow">For the artists</p>
+				<div>
+					<h2>Your craft deserves <em>a closer look.</em></h2>
+					<p>
+						We celebrate the hands behind the style—from the first consultation to the final detail.
+						Explore the journal for ideas to share with your next client.
+					</p>
+				</div>
+				<a class="button button-light" href="/blog/markdown-style-guide/">Read the consultation guide <span>↗</span></a>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.home {
+		width: min(1180px, calc(100% - 3rem));
+		max-width: none;
+		padding: 2.25rem 0 0;
+	}
+	.hero {
+		position: relative;
+		display: grid;
+		grid-template-columns: 0.92fr 1.08fr;
+		align-items: center;
+		gap: clamp(2rem, 7vw, 6rem);
+		min-height: 590px;
+		padding: 2rem 0 5rem;
+	}
+	.hero-copy {
+		position: relative;
+		z-index: 1;
+		padding: 2rem 0;
+	}
+	.eyebrow {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0 0 1.2rem;
+		color: var(--accent);
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		line-height: 1.4;
+		text-transform: uppercase;
+	}
+	.eyebrow span {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+	h1,
+	h2,
+	h3 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-weight: 400;
+		letter-spacing: -0.045em;
+	}
+	.hero h1 {
+		margin: 0;
+		font-size: clamp(3.5rem, 7vw, 6.6rem);
+		line-height: 0.98;
+	}
+	h1 em,
+	h2 em {
+		color: var(--accent);
+		font-weight: 400;
+	}
+	.hero-intro {
+		max-width: 430px;
+		margin: 1.5rem 0 1.7rem;
+		color: rgb(var(--gray));
+		font-size: 1rem;
+		line-height: 1.65;
+	}
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1.25rem;
+	}
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.1rem;
+		min-height: 48px;
+		padding: 0.65rem 1.1rem;
+		border: 1px solid transparent;
+		font-size: 0.77rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition: transform 180ms ease, background 180ms ease;
+	}
+	.button:hover {
+		transform: translateY(-2px);
+	}
+	.button-dark {
+		background: var(--ink);
+		color: white;
+	}
+	.button-dark:hover {
+		background: var(--accent);
+		color: white;
+	}
+	.text-link {
+		color: var(--ink);
+		font-size: 0.77rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.text-link span {
+		margin-left: 0.35rem;
+		color: var(--accent);
+	}
+	.text-link:hover {
+		color: var(--accent);
+	}
+	.hero-note {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.8rem;
+		max-width: 310px;
+		margin-top: 3rem;
+		color: rgb(var(--gray));
+	}
+	.note-rule {
+		flex: 0 0 32px;
+		height: 1px;
+		margin-top: 0.7rem;
+		background: var(--accent);
+	}
+	.hero-note p {
+		margin: 0;
+		font-size: 0.7rem;
+		line-height: 1.55;
+	}
+	.hero-image {
+		position: relative;
+		display: block;
+		min-height: 480px;
+		height: min(60vw, 630px);
+		overflow: hidden;
+		background: #d8c2b5;
+		color: white;
+	}
+	.hero-image::after {
+		position: absolute;
+		inset: 45% 0 0;
+		background: linear-gradient(transparent, rgb(29 19 20 / 58%));
+		content: '';
+	}
+	.hero-image img {
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		object-fit: cover;
+		object-position: center;
+		transition: transform 500ms ease;
+	}
+	.hero-image:hover img {
+		transform: scale(1.025);
+	}
+	.image-caption {
+		position: absolute;
+		z-index: 1;
+		right: 1.5rem;
+		bottom: 1.4rem;
+		left: 1.5rem;
+		display: grid;
+		gap: 0.25rem;
+		color: white;
+	}
+	.image-caption span {
+		font-size: 0.63rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.image-caption strong {
+		max-width: 420px;
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+		font-weight: 400;
+		line-height: 1.15;
+	}
+	.hero-index {
+		position: absolute;
+		right: 0;
+		bottom: 1.65rem;
+		color: rgb(var(--gray));
+		font-size: 0.62rem;
+		letter-spacing: 0.12em;
+	}
+	.hero-index span {
+		padding: 0 0.4rem;
+		color: var(--accent);
+	}
+	.lookbook,
+	.latest {
+		padding: 5rem 0;
+		border-top: 1px solid var(--line);
+	}
+	.section-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-bottom: 2.2rem;
+	}
+	.section-heading .eyebrow {
+		margin-bottom: 0.7rem;
+	}
+	.section-heading h2,
+	.artist-note h2 {
+		margin: 0;
+		font-size: clamp(2.3rem, 4vw, 3.8rem);
+		line-height: 1.05;
+	}
+	.section-aside {
+		max-width: 330px;
+		margin: 0 0 0.35rem;
+		color: rgb(var(--gray));
+		font-size: 0.78rem;
+		line-height: 1.6;
+	}
+	.category-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
+	}
+	.category-card {
+		position: relative;
+		min-height: 195px;
+		padding: 1.3rem 1.3rem 1.2rem 0;
+		border-right: 1px solid var(--line);
+		color: var(--ink);
+		text-decoration: none;
+		transition: background 180ms ease, padding 180ms ease;
+	}
+	.category-card:not(:first-child) {
+		padding-left: 1.3rem;
+	}
+	.category-card:last-child {
+		border-right: 0;
+	}
+	.category-card:hover {
+		background: rgb(140 57 81 / 5%);
+		padding-top: 1.1rem;
+	}
+	.category-number {
+		color: var(--accent);
+		font-size: 0.63rem;
+		letter-spacing: 0.12em;
+	}
+	.category-arrow {
+		position: absolute;
+		top: 1.15rem;
+		right: 1rem;
+		color: var(--accent);
+		font-size: 1.05rem;
+	}
+	.category-card h3 {
+		margin: 2.8rem 0 0.4rem;
+		font-size: 1.35rem;
+		line-height: 1.15;
+	}
+	.category-card p {
+		max-width: 220px;
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.72rem;
+		line-height: 1.5;
+	}
+	.latest {
+		padding-top: 1rem;
+		border-top: 0;
+	}
+	.latest-heading {
+		align-items: end;
+		margin-bottom: 2rem;
+	}
+	.latest-heading .text-link {
+		margin-bottom: 0.45rem;
+	}
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem;
+	}
+	.post-image {
+		display: block;
+		aspect-ratio: 4 / 3;
+		margin-bottom: 1rem;
+		overflow: hidden;
+		background: #e6d9d0;
+	}
+	.post-image img {
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		object-fit: cover;
+		transition: transform 350ms ease;
+	}
+	.post-image:hover img {
+		transform: scale(1.035);
+	}
+	.post-meta {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.7rem;
+		color: rgb(var(--gray));
+		font-size: 0.63rem;
+	}
+	.post-meta span {
+		color: var(--accent);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+	.post-card h3 {
+		margin: 0.7rem 0 0.45rem;
+		font-size: 1.45rem;
+		line-height: 1.15;
+	}
+	.post-card h3 a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.post-card h3 a:hover {
+		color: var(--accent);
+	}
+	.post-card > p {
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.77rem;
+		line-height: 1.55;
+	}
+	.artist-note {
+		display: grid;
+		grid-template-columns: 0.6fr 1.3fr auto;
+		align-items: center;
+		gap: 2rem;
+		margin: 2rem 0 5rem;
+		padding: 2.2rem;
+		background: var(--accent-dark);
+		color: white;
+	}
+	.artist-note .eyebrow {
+		align-self: start;
+		color: #edc5c9;
+	}
+	.artist-note h2 {
+		max-width: 470px;
+		color: white;
+		font-size: clamp(2rem, 3.3vw, 3rem);
+	}
+	.artist-note h2 em {
+		color: #edc5c9;
+	}
+	.artist-note div > p {
+		max-width: 540px;
+		margin: 0.8rem 0 0;
+		color: rgb(255 255 255 / 76%);
+		font-size: 0.75rem;
+		line-height: 1.6;
+	}
+	.button-light {
+		background: #fff8f4;
+		color: var(--accent-dark);
+		white-space: nowrap;
+	}
+	.button-light:hover {
+		background: white;
+		color: var(--accent-dark);
+	}
+	@media (max-width: 900px) {
+		.hero {
+			gap: 2rem;
+		}
+		.hero-image {
+			min-height: 400px;
+		}
+		.category-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.category-card:nth-child(2) {
+			border-right: 0;
+		}
+		.category-card:nth-child(n + 3) {
+			border-top: 1px solid var(--line);
+		}
+		.category-card:nth-child(3) {
+			padding-left: 0;
+		}
+		.artist-note {
+			grid-template-columns: 1fr 2fr;
+		}
+		.artist-note .button {
+			grid-column: 2;
+			justify-self: start;
+		}
+	}
+	@media (max-width: 640px) {
+		.home {
+			width: min(100% - 2rem, 560px);
+			padding-top: 0;
+		}
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 1.3rem;
+			min-height: auto;
+			padding: 2.1rem 0 3.5rem;
+		}
+		.hero-copy {
+			padding: 0;
+		}
+		.hero h1 {
+			font-size: clamp(3.4rem, 16vw, 5rem);
+		}
+		.hero-intro {
+			margin: 1.2rem 0;
+			font-size: 0.9rem;
+		}
+		.hero-note {
+			display: none;
+		}
+		.hero-image {
+			height: 95vw;
+			min-height: 310px;
+			max-height: 500px;
+		}
+		.hero-index {
+			bottom: 1.2rem;
+		}
+		.lookbook,
+		.latest {
+			padding: 3.5rem 0;
+		}
+		.section-heading {
+			display: block;
+			margin-bottom: 1.5rem;
+		}
+		.section-aside {
+			margin-top: 0.9rem;
+		}
+		.section-heading h2 {
+			font-size: 2.6rem;
+		}
+		.category-card {
+			min-height: 175px;
+			padding-right: 0.8rem;
+		}
+		.category-card:not(:first-child) {
+			padding-left: 0.8rem;
+		}
+		.category-card:nth-child(3) {
+			padding-left: 0;
+		}
+		.category-card h3 {
+			margin-top: 2.3rem;
+			font-size: 1.2rem;
+		}
+		.category-card p {
+			font-size: 0.68rem;
+		}
+		.post-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.post-card h3 {
+			font-size: 1.55rem;
+		}
+		.artist-note {
+			grid-template-columns: 1fr;
+			gap: 0.7rem;
+			margin: 0.5rem 0 3rem;
+			padding: 1.5rem;
+		}
+		.artist-note .button {
+			grid-column: auto;
+			margin-top: 0.5rem;
+			white-space: normal;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+</style>

@@ -1,16 +1,36 @@
 ---
-title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 08 2022'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+title: 'The 2026 texture edit: five styles that move with you'
+description: 'From soft knotless braids to defined twist-outs, find a textured look that feels current, comfortable, and unmistakably yours.'
+category: 'Hair'
+pubDate: '2026-10-26'
+heroImage: '../../assets/boho-braids-editorial.jpg'
+heroImageAlt: 'A woman wearing long, softly finished knotless braids'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+The best style is not just the one that photographs well. It should suit your texture, your routine, and how much time you want to spend getting ready. This year’s hair conversation is leaning toward movement and individuality: defined natural texture, softer finishes, and protective styles with room to make the look your own.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## 1. Soft boho knotless braids
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+Classic knotless braids get an airy finish with a few loose curls woven through the lengths. Ask your stylist to keep the curls intentional and the base braids light; the result feels relaxed rather than overworked. A half-up style gives you a second look without undoing the install.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+## 2. A braid-out with shape
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+Stretch a twist-out or braid-out into a soft, full silhouette with a clean side part or a rounded shape. Set the style on moisturised hair, let it dry fully, then separate gently with a little oil on your fingertips. The pattern—not perfect uniformity—is the point.
+
+## 3. Shoulder-length twists
+
+Two-strand twists can be worn loose, pinned into an updo, or refreshed into a twist-out later. Choose a size that works with your schedule: smaller twists take longer to install, while larger twists are quicker to redo.
+
+## 4. Defined curls with a side part
+
+Use a leave-in and a lightweight gel that work for your hair, then let your natural curl pattern lead. A deep side part adds polish without changing the texture. Diffuse on low heat or air-dry, and avoid handling the curls while they set.
+
+## 5. Stitch-braid details
+
+Graphic parting and clean stitch-braid lines can make a simple ponytail or braided bun feel special. Bring a reference photo to your consultation and talk through the parting, finish, and how long you would like to wear the style.
+
+### Before you book
+
+Tell your stylist about your usual wash routine, any tender areas, and the amount of tension you find comfortable. A protective style should still feel comfortable; speak up during the appointment if anything feels too tight.
+
+For more 2026 inspiration, see [Vogue’s hair-trend report](https://www.vogue.com/article/11-hair-trends-2026) and [The Zoe Report’s fall textured-hair edit](https://www.thezoereport.com/beauty/fall-2026-protective-textured-hair-trends). Use them as mood-board references, then make the look your own.
